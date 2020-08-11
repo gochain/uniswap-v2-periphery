@@ -459,6 +459,29 @@ contract UniswapV2Router02 is IUniswapV2Router02 {
     }
 
     // **** LIBRARY FUNCTIONS ****
+
+    function pairFor(
+        address factory2,
+        address tokenA,
+        address tokenB
+    ) public pure returns (address pair) {
+        (address token0, address token1) = UniswapV2Library.sortTokens(tokenA, tokenB);
+        pair = address(
+            uint256(
+                keccak256(
+                    abi.encodePacked(
+                        hex'ff',
+                        factory2,
+                        keccak256(abi.encodePacked(token0, token1)),
+                        hex'96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f'
+                        //hex'c8ae83e069cff715bbe2bef7fa64822cfea2c1fa895cfe786051d0958d1076a0' // init code hash
+                        // type(UniswapV2Pair).creationCode
+                    )
+                )
+            )
+        );
+    }
+
     function quote(
         uint256 amountA,
         uint256 reserveA,
