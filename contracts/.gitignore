@@ -1,4 +1,7 @@
 lib/oz
-SafeMath*
-TransferHelper*
-UniswapV2Library*
+SafeMath.abi
+SafeMath.bin
+TransferHelper.abi
+TransferHelper.bin
+UniswapV2Library.abi
+UniswapV2Library.bin
